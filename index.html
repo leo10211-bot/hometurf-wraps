@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hometurf Wraps — Custom Vinyl-Wrapped Skateboards</title>
+<title>Hometurf Wraps — Decorative Vinyl-Wrapped Skateboard Wall Art</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -15,6 +15,7 @@
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#how-it-works">How it works</a>
+    <a href="#gallery">Gallery</a>
     <a href="#shop">Shop</a>
     <a href="#order" class="nav-cta">Order</a>
   </div>
@@ -23,7 +24,7 @@
 <header class="hero" id="top">
   <img src="assets/logo.png" alt="Hometurf Wraps logo" class="hero-logo reveal">
   <h1 class="reveal">Hometurf Wraps</h1>
-  <p class="tagline reveal">Vinyl-wrapped skateboards, built and shipped ready to ride — rep your team on every push.</p>
+  <p class="tagline reveal">Vinyl-wrapped skateboard decks, built to hang — rep your team on the wall.</p>
   <a href="#shop" class="cta reveal">Shop the lineup</a>
   <div class="scroll-cue" aria-hidden="true"><span></span></div>
 </header>
@@ -38,55 +39,79 @@
     <p><strong>Hand-applied</strong><br>Every wrap cut and fit by hand, no shortcuts</p>
   </div>
   <div class="trust-item">
-    <span class="trust-icon">📦</span>
-    <p><strong>Ready to ride</strong><br>Every board pre-built and shipped complete, no assembly needed</p>
+    <span class="trust-icon">🖼️</span>
+    <p><strong>Ready to hang</strong><br>Every board pre-built and ready to mount, no assembly needed</p>
   </div>
 </section>
 
 <section class="section" id="about">
   <h2 class="reveal">What we do</h2>
   <p class="reveal">
-    Every board we sell is built and wrapped in-house using genuine 3M vinyl — complete,
-    ready-to-ride skateboards, not just a wrap kit. Browse the lineup, pick your favorite
-    design, and we'll ship it straight to you.
+    Every board we sell is built and wrapped in-house using genuine 3M vinyl — decorative
+    pieces built to hang, not ride. Browse the lineup, pick your favorite design, and
+    we'll ship it ready to mount on your wall.
   </p>
 </section>
 
 <section class="section alt" id="how-it-works">
   <h2 class="reveal">How it works</h2>
   <ol class="steps">
-    <li class="reveal"><span class="step-num">1</span><div><strong>Browse the lineup</strong><p>Every board is pre-built in its own design and colorway.</p></div></li>
+    <li class="reveal"><span class="step-num">1</span><div><strong>Browse the lineup</strong><p>Every board is pre-built in its own design.</p></div></li>
     <li class="reveal"><span class="step-num">2</span><div><strong>Pick your board</strong><p>Choose the design that matches your team.</p></div></li>
-    <li class="reveal"><span class="step-num">3</span><div><strong>It ships to you</strong><p>Complete and ready to ride — no assembly required.</p></div></li>
+    <li class="reveal"><span class="step-num">3</span><div><strong>It ships to you</strong><p>Complete and ready to hang — no assembly required.</p></div></li>
   </ol>
+</section>
+
+<section class="section carousel-section" id="gallery">
+  <h2 class="reveal">See it on your wall</h2>
+  <p class="reveal">Every board mounts flush and becomes a piece on its own.</p>
+  <div class="carousel reveal" id="carousel">
+    <div class="carousel-track" id="carousel-track">
+      <div class="carousel-slide">
+        <div class="wall-scene wall-a"><div class="mounted-deck combo-b"></div></div>
+        <p>Living room</p>
+      </div>
+      <div class="carousel-slide">
+        <div class="wall-scene wall-b"><div class="mounted-deck combo-a"></div></div>
+        <p>Game room</p>
+      </div>
+      <div class="carousel-slide">
+        <div class="wall-scene wall-c"><div class="mounted-deck combo-c"></div></div>
+        <p>Garage</p>
+      </div>
+    </div>
+    <button type="button" class="carousel-arrow prev" id="carousel-prev" aria-label="Previous slide">&larr;</button>
+    <button type="button" class="carousel-arrow next" id="carousel-next" aria-label="Next slide">&rarr;</button>
+    <div class="carousel-dots" id="carousel-dots" role="tablist" aria-label="Gallery slides"></div>
+  </div>
 </section>
 
 <section class="section" id="shop">
   <h2 class="reveal">Shop the lineup</h2>
-  <p class="reveal">Every board below is pre-built and ready to ship. Pick one and order below.</p>
+  <p class="reveal">Every board below is pre-built and ready to hang. Pick one for a closer look.</p>
   <div class="shop-grid">
-    <button type="button" class="shop-card reveal" data-board="Gridiron Green &amp; Gold" data-price="$XX">
+    <button type="button" class="shop-card reveal" data-board="Gridiron Green &amp; Gold" data-price="$XX" data-deck-class="combo-b">
       <div class="deck-mock combo-b"></div>
       <div class="shop-card-info">
         <p class="shop-card-name">Gridiron Green &amp; Gold</p>
         <p class="shop-card-price">$XX <span>pricing coming soon</span></p>
       </div>
     </button>
-    <button type="button" class="shop-card reveal" data-board="Classic Red &amp; Navy" data-price="$XX">
+    <button type="button" class="shop-card reveal" data-board="Classic Red &amp; Navy" data-price="$XX" data-deck-class="combo-a">
       <div class="deck-mock combo-a"></div>
       <div class="shop-card-info">
         <p class="shop-card-name">Classic Red &amp; Navy</p>
         <p class="shop-card-price">$XX <span>pricing coming soon</span></p>
       </div>
     </button>
-    <button type="button" class="shop-card reveal" data-board="Blackout Silver" data-price="$XX">
+    <button type="button" class="shop-card reveal" data-board="Blackout Silver" data-price="$XX" data-deck-class="combo-c">
       <div class="deck-mock combo-c"></div>
       <div class="shop-card-info">
         <p class="shop-card-name">Blackout Silver</p>
         <p class="shop-card-price">$XX <span>pricing coming soon</span></p>
       </div>
     </button>
-    <button type="button" class="shop-card reveal" data-board="Purple Reign" data-price="$XX">
+    <button type="button" class="shop-card reveal" data-board="Purple Reign" data-price="$XX" data-deck-class="combo-d">
       <div class="deck-mock combo-d"></div>
       <div class="shop-card-info">
         <p class="shop-card-name">Purple Reign</p>
@@ -128,6 +153,16 @@
 <footer>
   <p>&copy; 2026 Hometurf Wraps · <a href="mailto:hello@hometurfwraps.com">hello@hometurfwraps.com</a></p>
 </footer>
+
+<div class="drawer-overlay" id="drawer-overlay"></div>
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+  <button type="button" class="drawer-close" id="drawer-close" aria-label="Close">&times;</button>
+  <div class="deck-mock drawer-mock" id="drawer-mock"></div>
+  <h3 id="drawer-title"></h3>
+  <p class="drawer-price" id="drawer-price"></p>
+  <p class="drawer-desc">Pre-built, vinyl-wrapped, ready to hang. Genuine 3M vinyl, hand-applied.</p>
+  <button type="button" class="cta" id="drawer-order">Order this board</button>
+</div>
 
 <script src="script.js"></script>
 </body>
