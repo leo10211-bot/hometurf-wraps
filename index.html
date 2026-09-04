@@ -16,6 +16,10 @@
     <a href="#about">About</a>
     <a href="#how-it-works">How it works</a>
     <a href="#gallery">Gallery</a>
+    <button type="button" class="nav-favorites" id="nav-favorites" aria-label="View favorites">
+      <span aria-hidden="true">&hearts;</span>
+      <span id="favorites-count" class="favorites-count" hidden>0</span>
+    </button>
     <a href="#shop" class="nav-cta">Shop</a>
   </div>
 </nav>
@@ -88,37 +92,59 @@
 <section class="section" id="shop">
   <h2 class="reveal">Shop the lineup</h2>
   <p class="reveal">Every board below is pre-built and ready to hang. Pick one for a closer look, then buy on the spot.</p>
-  <div class="shop-grid">
-    <button type="button" class="shop-card reveal" data-board="Gridiron Green &amp; Gold" data-price="$XX" data-deck-class="combo-b" data-checkout-url="">
+
+  <div class="shop-controls reveal">
+    <input type="search" id="shop-search" class="shop-search" placeholder="Search by team or color&hellip;" aria-label="Search boards">
+    <div class="filter-group" role="group" aria-label="Filter by league">
+      <button type="button" class="filter-btn active" data-league-filter="all">All</button>
+      <button type="button" class="filter-btn" data-league-filter="NFL">NFL</button>
+      <button type="button" class="filter-btn" data-league-filter="College">College</button>
+    </div>
+    <button type="button" class="filter-btn favorites-toggle" id="favorites-toggle" aria-pressed="false">&hearts; Favorites only</button>
+  </div>
+
+  <p class="shop-empty" id="shop-empty" hidden>No boards match your search yet.</p>
+
+  <div class="shop-grid" id="shop-grid">
+    <div class="shop-card reveal" tabindex="0" role="button" data-board="Gridiron Green &amp; Gold" data-price="$XX" data-deck-class="combo-b" data-checkout-url="" data-league="NFL" aria-label="View Gridiron Green &amp; Gold">
+      <button type="button" class="heart-btn" aria-label="Add Gridiron Green &amp; Gold to favorites" aria-pressed="false"><span aria-hidden="true">&hearts;</span></button>
       <div class="deck-mock combo-b"></div>
       <div class="shop-card-info">
         <p class="shop-card-name">Gridiron Green &amp; Gold</p>
         <p class="shop-card-price">$XX <span>pricing coming soon</span></p>
       </div>
-    </button>
-    <button type="button" class="shop-card reveal" data-board="Classic Red &amp; Navy" data-price="$XX" data-deck-class="combo-a" data-checkout-url="">
+    </div>
+    <div class="shop-card reveal" tabindex="0" role="button" data-board="Classic Red &amp; Navy" data-price="$XX" data-deck-class="combo-a" data-checkout-url="" data-league="College" aria-label="View Classic Red &amp; Navy">
+      <button type="button" class="heart-btn" aria-label="Add Classic Red &amp; Navy to favorites" aria-pressed="false"><span aria-hidden="true">&hearts;</span></button>
       <div class="deck-mock combo-a"></div>
       <div class="shop-card-info">
         <p class="shop-card-name">Classic Red &amp; Navy</p>
         <p class="shop-card-price">$XX <span>pricing coming soon</span></p>
       </div>
-    </button>
-    <button type="button" class="shop-card reveal" data-board="Blackout Silver" data-price="$XX" data-deck-class="combo-c" data-checkout-url="">
+    </div>
+    <div class="shop-card reveal" tabindex="0" role="button" data-board="Blackout Silver" data-price="$XX" data-deck-class="combo-c" data-checkout-url="" data-league="NFL" aria-label="View Blackout Silver">
+      <button type="button" class="heart-btn" aria-label="Add Blackout Silver to favorites" aria-pressed="false"><span aria-hidden="true">&hearts;</span></button>
       <div class="deck-mock combo-c"></div>
       <div class="shop-card-info">
         <p class="shop-card-name">Blackout Silver</p>
         <p class="shop-card-price">$XX <span>pricing coming soon</span></p>
       </div>
-    </button>
-    <button type="button" class="shop-card reveal" data-board="Purple Reign" data-price="$XX" data-deck-class="combo-d" data-checkout-url="">
+    </div>
+    <div class="shop-card reveal" tabindex="0" role="button" data-board="Purple Reign" data-price="$XX" data-deck-class="combo-d" data-checkout-url="" data-league="College" aria-label="View Purple Reign">
+      <button type="button" class="heart-btn" aria-label="Add Purple Reign to favorites" aria-pressed="false"><span aria-hidden="true">&hearts;</span></button>
       <div class="deck-mock combo-d"></div>
       <div class="shop-card-info">
         <p class="shop-card-name">Purple Reign</p>
         <p class="shop-card-price">$XX <span>pricing coming soon</span></p>
       </div>
-    </button>
+    </div>
   </div>
 </section>
+
+<div class="recent-tray" id="recent-tray" hidden>
+  <span class="recent-tray-label">Recently viewed</span>
+  <div class="recent-tray-items" id="recent-tray-items"></div>
+</div>
 
 <footer>
   <p>&copy; 2026 Hometurf Wraps · <a href="mailto:hello@hometurfwraps.com">hello@hometurfwraps.com</a></p>
@@ -127,12 +153,17 @@
 <div class="drawer-overlay" id="drawer-overlay"></div>
 <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
   <button type="button" class="drawer-close" id="drawer-close" aria-label="Close">&times;</button>
-  <div class="deck-mock drawer-mock" id="drawer-mock"></div>
+  <button type="button" class="deck-mock drawer-mock" id="drawer-mock" aria-label="Zoom in on this design"></button>
   <h3 id="drawer-title"></h3>
   <p class="drawer-price" id="drawer-price"></p>
-  <p class="drawer-desc">Pre-built, vinyl-wrapped, ready to hang. Genuine 3M vinyl, hand-applied.</p>
+  <p class="drawer-desc">Pre-built, vinyl-wrapped, ready to hang. Genuine 3M vinyl, hand-applied. Click the design to zoom in.</p>
   <button type="button" class="cta" id="drawer-buy">Buy now</button>
   <p class="form-note" id="drawer-note"></p>
+</div>
+
+<div class="lightbox-overlay" id="lightbox-overlay">
+  <button type="button" class="drawer-close lightbox-close" id="lightbox-close" aria-label="Close zoom">&times;</button>
+  <div class="deck-mock lightbox-mock" id="lightbox-mock"></div>
 </div>
 
 <script src="script.js"></script>
