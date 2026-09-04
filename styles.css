@@ -596,10 +596,12 @@ body {
 }
 
 .wall-photo {
-  height: 320px;
+  aspect-ratio: 2 / 3;
   border-radius: 16px;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center;
+  background-color: #e7e0d2;
 }
 
 .carousel-arrow {
@@ -699,12 +701,17 @@ body {
 .deck-mock.drawer-mock {
   display: block;
   width: 100%;
-  height: 160px;
+  aspect-ratio: 2 / 3;
+  height: auto;
+  max-height: 50vh;
   border-radius: 16px;
   margin-bottom: 1rem;
   border: none;
   padding: 0;
   cursor: zoom-in;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #e7e0d2;
   transition: opacity 0.2s ease;
 }
 
@@ -770,6 +777,9 @@ body {
   width: min(80vw, 320px);
   height: min(70vh, 480px);
   border-radius: 32px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #e7e0d2;
   transform: scale(0.9);
   transition: transform 0.3s ease;
 }
@@ -952,9 +962,12 @@ body.has-recent-tray {
 
 .shop-card .deck-mock {
   border-radius: 0;
-  height: 280px;
-  background-size: cover;
+  aspect-ratio: 2 / 3;
+  height: auto;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center;
+  background-color: #e7e0d2;
 }
 
 .heart-btn {
