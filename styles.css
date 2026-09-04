@@ -595,23 +595,11 @@ body {
   color: var(--muted);
 }
 
-.wall-scene {
-  height: 220px;
+.wall-photo {
+  height: 320px;
   border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.wall-a { background: #d8cdb8; }
-.wall-b { background: #b7c2c2; }
-.wall-c { background: #8c8c8c; }
-
-.mounted-deck {
-  width: 70px;
-  height: 190px;
-  border-radius: 34px;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 2px rgba(0, 0, 0, 0.15);
+  background-size: cover;
+  background-position: center;
 }
 
 .carousel-arrow {
@@ -841,6 +829,8 @@ body {
   cursor: pointer;
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
   transition: transform 0.2s ease;
+  background-size: cover;
+  background-position: center;
 }
 
 .recent-tray-item:hover {
@@ -962,6 +952,9 @@ body.has-recent-tray {
 
 .shop-card .deck-mock {
   border-radius: 0;
+  height: 280px;
+  background-size: cover;
+  background-position: center;
 }
 
 .heart-btn {
@@ -1053,12 +1046,17 @@ body.has-recent-tray {
   height: 140px;
   border-radius: 60px;
   box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.15);
+  background-size: cover;
+  background-position: center;
 }
 
-.combo-a { background: linear-gradient(135deg, #a11c1c, #1c2b4d); }
-.combo-b { background: linear-gradient(135deg, #2f8a4e, var(--gold)); }
-.combo-c { background: linear-gradient(135deg, #171717, #9aa0a6); }
-.combo-d { background: linear-gradient(135deg, #5b2a86, #ffffff); }
+.photo-chiefs { background-image: url('assets/boards/chiefs.webp'); }
+.photo-ravens { background-image: url('assets/boards/ravens.webp'); }
+.photo-cowboys { background-image: url('assets/boards/cowboys.webp'); }
+.photo-patriots { background-image: url('assets/boards/patriots.webp'); }
+.photo-uconn { background-image: url('assets/boards/uconn-huskies.webp'); }
+.photo-ohiostate { background-image: url('assets/boards/ohio-state-buckeyes.webp'); }
+
 
 .form-note {
   margin: 0;
