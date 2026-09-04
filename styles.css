@@ -38,7 +38,7 @@ body {
   background: repeating-linear-gradient(
     45deg,
     var(--green-light) 0 22px,
-    rgba(47, 138, 78, 0.12) 22px 44px
+    rgba(47, 138, 78, 0.4) 22px 44px
   );
 }
 
@@ -54,7 +54,7 @@ body {
   position: absolute;
   left: 50%;
   transform-origin: center;
-  opacity: 0.55;
+  opacity: 0.95;
 }
 
 .decal-deck {
