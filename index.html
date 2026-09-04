@@ -8,40 +8,148 @@
 </head>
 <body>
 
-<header class="hero">
-  <img src="assets/logo.webp" alt="Hometurf Wraps logo" class="logo">
-  <h1>Hometurf Wraps</h1>
-  <p class="tagline">Custom vinyl wraps for the underside of your deck — rep your team, ride your board.</p>
-  <a href="#contact" class="cta">Get a custom wrap</a>
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-brand">
+    <img src="assets/logo.webp" alt="Hometurf Wraps" class="nav-logo">
+  </a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#how-it-works">How it works</a>
+    <a href="#colors">Colors</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#quote" class="nav-cta">Get a quote</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <img src="assets/logo.webp" alt="Hometurf Wraps logo" class="hero-logo reveal">
+  <h1 class="reveal">Hometurf Wraps</h1>
+  <p class="tagline reveal">Custom vinyl wraps for the underside of your deck — rep your team, ride your board.</p>
+  <a href="#quote" class="cta reveal">Get a custom wrap</a>
+  <div class="scroll-cue" aria-hidden="true"><span></span></div>
 </header>
 
+<section class="trust-bar reveal">
+  <div class="trust-item">
+    <span class="trust-badge">3M</span>
+    <p><strong>3M Certified installer</strong><br>Trained and certified on genuine 3M vinyl film</p>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">✋</span>
+    <p><strong>Hand-applied</strong><br>Every wrap cut and fit by hand, no shortcuts</p>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">📐</span>
+    <p><strong>Custom fit</strong><br>Measured to your exact deck shape and size</p>
+  </div>
+</section>
+
 <section class="section" id="about">
-  <h2>What we do</h2>
-  <p>
-    Every wrap is cut and applied by hand to fit the underside of your skateboard deck.
-    Pick your favorite team's mascot, colors, and logo, and we'll turn your board into
-    a piece of fan gear you actually ride.
+  <h2 class="reveal">What we do</h2>
+  <p class="reveal">
+    Every wrap is cut and applied by hand to fit the underside of your skateboard deck,
+    using genuine 3M vinyl. Pick your favorite team's colors and style, and we'll turn
+    your board into a piece of fan gear you actually ride.
   </p>
 </section>
 
-<section class="section" id="how-it-works">
-  <h2>How it works</h2>
+<section class="section alt" id="how-it-works">
+  <h2 class="reveal">How it works</h2>
   <ol class="steps">
-    <li><strong>Pick a team.</strong> Any sports team, any mascot — tell us your favorite.</li>
-    <li><strong>Send your deck size.</strong> We cut every wrap to fit exactly.</li>
-    <li><strong>We wrap it.</strong> Custom vinyl, hand-applied, ready to ride.</li>
+    <li class="reveal"><span class="step-num">1</span><div><strong>Pick your colors</strong><p>Any team, any colorway — tell us what you want.</p></div></li>
+    <li class="reveal"><span class="step-num">2</span><div><strong>Send your deck size</strong><p>We cut every wrap to fit your exact board.</p></div></li>
+    <li class="reveal"><span class="step-num">3</span><div><strong>We wrap it</strong><p>Genuine 3M vinyl, hand-applied, ready to ride.</p></div></li>
   </ol>
 </section>
 
-<section class="section" id="contact">
-  <h2>Get in touch</h2>
-  <p>Want a custom wrap for your deck? Reach out and tell us your team.</p>
-  <a href="mailto:hello@hometurfwraps.com" class="cta">hello@hometurfwraps.com</a>
+<section class="section" id="colors">
+  <h2 class="reveal">Popular color combos</h2>
+  <p class="reveal">A few starting points — every wrap is fully custom to your team and style.</p>
+  <div class="combo-grid">
+    <div class="combo-card reveal">
+      <div class="deck-mock combo-a"></div>
+      <p>Classic red &amp; navy</p>
+    </div>
+    <div class="combo-card reveal">
+      <div class="deck-mock combo-b"></div>
+      <p>Green &amp; gold gridiron</p>
+    </div>
+    <div class="combo-card reveal">
+      <div class="deck-mock combo-c"></div>
+      <p>Black &amp; silver away kit</p>
+    </div>
+    <div class="combo-card reveal">
+      <div class="deck-mock combo-d"></div>
+      <p>Purple &amp; white home run</p>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="pricing">
+  <h2 class="reveal">Pricing</h2>
+  <p class="reveal">Simple, per-deck pricing. Exact numbers coming soon — reach out for a custom quote in the meantime.</p>
+  <div class="pricing-grid">
+    <div class="price-card reveal">
+      <h3>Standard</h3>
+      <p class="price">Get a quote</p>
+      <ul>
+        <li>Single color or team colorway</li>
+        <li>Standard turnaround</li>
+      </ul>
+    </div>
+    <div class="price-card reveal featured">
+      <h3>Custom</h3>
+      <p class="price">Get a quote</p>
+      <ul>
+        <li>Full custom design</li>
+        <li>Mascot &amp; logo detailing</li>
+        <li>Priority turnaround</li>
+      </ul>
+    </div>
+    <div class="price-card reveal">
+      <h3>Team order</h3>
+      <p class="price">Get a quote</p>
+      <ul>
+        <li>Multiple boards, same crew</li>
+        <li>Bulk pricing available</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="quote">
+  <h2 class="reveal">Get a custom quote</h2>
+  <p class="reveal">Tell us about your board and your team, and we'll follow up by email.</p>
+  <form class="quote-form reveal" id="quote-form">
+    <label>
+      Name
+      <input type="text" name="name" required>
+    </label>
+    <label>
+      Email
+      <input type="email" name="email" required>
+    </label>
+    <label>
+      Deck size
+      <input type="text" name="deck_size" placeholder="e.g. 8.25&quot;">
+    </label>
+    <label>
+      Team / colors you want
+      <input type="text" name="team" placeholder="e.g. green and gold, gridiron style">
+    </label>
+    <label>
+      Anything else?
+      <textarea name="message" rows="4"></textarea>
+    </label>
+    <button type="submit" class="cta">Send request</button>
+    <p class="form-note" id="form-note"></p>
+  </form>
 </section>
 
 <footer>
-  <p>&copy; 2026 Hometurf Wraps</p>
+  <p>&copy; 2026 Hometurf Wraps · <a href="mailto:hello@hometurfwraps.com">hello@hometurfwraps.com</a></p>
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>
