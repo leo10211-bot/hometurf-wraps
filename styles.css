@@ -729,9 +729,16 @@ body {
   margin: 0 0 1rem;
 }
 
+.drawer-board-desc {
+  color: var(--ink);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0 0 0.85rem;
+}
+
 .drawer-desc {
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   margin-bottom: 1.5rem;
 }
 

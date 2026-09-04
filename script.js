@@ -72,6 +72,7 @@ const drawerBuyBtn = document.getElementById('drawer-buy');
 const drawerMock = document.getElementById('drawer-mock');
 const drawerTitle = document.getElementById('drawer-title');
 const drawerPrice = document.getElementById('drawer-price');
+const drawerBoardDesc = document.getElementById('drawer-board-desc');
 const drawerNote = document.getElementById('drawer-note');
 
 let lastFocused = null;
@@ -88,6 +89,7 @@ function openDrawer(card) {
   drawerMock.className = 'deck-mock drawer-mock ' + card.dataset.deckClass;
   drawerTitle.textContent = card.dataset.board;
   drawerPrice.textContent = card.dataset.price + ' — pricing coming soon';
+  drawerBoardDesc.textContent = card.dataset.description || '';
   drawerNote.textContent = '';
   checkoutPending = false;
   drawerBuyBtn.disabled = false;
