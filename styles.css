@@ -1054,14 +1054,6 @@ body.has-recent-tray {
   font-weight: 700;
 }
 
-.shop-card-price span {
-  display: block;
-  margin-top: 0.15rem;
-  color: var(--muted);
-  font-size: 0.8rem;
-  font-weight: 400;
-}
-
 .deck-mock {
   height: 140px;
   border-radius: 60px;

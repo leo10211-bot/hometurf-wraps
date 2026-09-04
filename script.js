@@ -88,7 +88,7 @@ function openDrawer(card) {
 
   drawerMock.className = 'deck-mock drawer-mock ' + card.dataset.deckClass;
   drawerTitle.textContent = card.dataset.board;
-  drawerPrice.textContent = card.dataset.price + ' — pricing coming soon';
+  drawerPrice.textContent = card.dataset.price;
   drawerBoardDesc.textContent = card.dataset.description || '';
   drawerNote.textContent = '';
   checkoutPending = false;
