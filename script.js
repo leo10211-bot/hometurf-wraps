@@ -11,14 +11,39 @@ const observer = new IntersectionObserver((entries) => {
 
 revealEls.forEach((el) => observer.observe(el));
 
-const form = document.getElementById('quote-form');
+const shopCards = document.querySelectorAll('.shop-card');
+const orderBoardField = document.getElementById('order-board');
+
+shopCards.forEach((card) => {
+  card.addEventListener('click', () => {
+    shopCards.forEach((c) => c.classList.remove('selected'));
+    card.classList.add('selected');
+
+    const board = card.dataset.board;
+    const price = card.dataset.price;
+    orderBoardField.value = `${board} (${price})`;
+
+    document.getElementById('order').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const nameField = document.querySelector('#order-form input[name="name"]');
+    if (nameField) nameField.focus({ preventScroll: true });
+  });
+});
+
+const form = document.getElementById('order-form');
 const note = document.getElementById('form-note');
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 
+  const board = form.board.value.trim();
   const name = form.name.value.trim();
   const email = form.email.value.trim();
+
+  if (!board) {
+    note.textContent = 'Pick a board from the shop above first.';
+    note.style.color = '#a11c1c';
+    return;
+  }
 
   if (!name || !email) {
     note.textContent = 'Please fill in your name and email.';
@@ -26,21 +51,20 @@ form.addEventListener('submit', (e) => {
     return;
   }
 
-  const deckSize = form.deck_size.value.trim();
-  const team = form.team.value.trim();
+  const address = form.address.value.trim();
   const message = form.message.value.trim();
 
   const body = [
+    `Board: ${board}`,
     `Name: ${name}`,
     `Email: ${email}`,
-    deckSize ? `Deck size: ${deckSize}` : null,
-    team ? `Team / colors: ${team}` : null,
+    address ? `Shipping address: ${address}` : null,
     message ? `Message: ${message}` : null,
   ].filter(Boolean).join('\n');
 
-  const mailto = `mailto:hello@hometurfwraps.com?subject=${encodeURIComponent('Custom wrap quote request')}&body=${encodeURIComponent(body)}`;
+  const mailto = `mailto:hello@hometurfwraps.com?subject=${encodeURIComponent('Board order: ' + board)}&body=${encodeURIComponent(body)}`;
 
   window.location.href = mailto;
   note.style.color = 'var(--muted)';
-  note.textContent = 'Opening your email client to send the request...';
+  note.textContent = 'Opening your email client to send the order...';
 });
