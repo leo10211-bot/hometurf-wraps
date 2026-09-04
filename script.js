@@ -62,17 +62,17 @@ carousel.addEventListener('focusout', startAutoplay);
 goToSlide(0);
 startAutoplay();
 
-/* Quick-view drawer */
+/* Quick-view drawer + checkout */
 
 const shopCards = document.querySelectorAll('.shop-card');
-const orderBoardField = document.getElementById('order-board');
 const drawer = document.getElementById('drawer');
 const drawerOverlay = document.getElementById('drawer-overlay');
 const drawerClose = document.getElementById('drawer-close');
-const drawerOrderBtn = document.getElementById('drawer-order');
+const drawerBuyBtn = document.getElementById('drawer-buy');
 const drawerMock = document.getElementById('drawer-mock');
 const drawerTitle = document.getElementById('drawer-title');
 const drawerPrice = document.getElementById('drawer-price');
+const drawerNote = document.getElementById('drawer-note');
 
 let lastFocused = null;
 let activeCard = null;
@@ -84,6 +84,7 @@ function openDrawer(card) {
   drawerMock.className = 'deck-mock drawer-mock ' + card.dataset.deckClass;
   drawerTitle.textContent = card.dataset.board;
   drawerPrice.textContent = card.dataset.price + ' — pricing coming soon';
+  drawerNote.textContent = '';
 
   drawer.classList.add('open');
   drawerOverlay.classList.add('open');
@@ -102,6 +103,15 @@ function onDrawerKeydown(e) {
   if (e.key === 'Escape') closeDrawer();
 }
 
+function goToCheckout(card) {
+  const url = card.dataset.checkoutUrl;
+  if (url) {
+    window.location.href = url;
+    return;
+  }
+  return false;
+}
+
 shopCards.forEach((card) => {
   card.addEventListener('click', () => openDrawer(card));
 });
@@ -109,57 +119,11 @@ shopCards.forEach((card) => {
 drawerClose.addEventListener('click', closeDrawer);
 drawerOverlay.addEventListener('click', closeDrawer);
 
-drawerOrderBtn.addEventListener('click', () => {
+drawerBuyBtn.addEventListener('click', () => {
   if (!activeCard) return;
-
-  shopCards.forEach((c) => c.classList.remove('selected'));
-  activeCard.classList.add('selected');
-  orderBoardField.value = `${activeCard.dataset.board} (${activeCard.dataset.price})`;
-
-  closeDrawer();
-  document.getElementById('order').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  const nameField = document.querySelector('#order-form input[name="name"]');
-  if (nameField) nameField.focus({ preventScroll: true });
-});
-
-/* Order form */
-
-const form = document.getElementById('order-form');
-const note = document.getElementById('form-note');
-
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  const board = form.board.value.trim();
-  const name = form.name.value.trim();
-  const email = form.email.value.trim();
-
-  if (!board) {
-    note.textContent = 'Pick a board from the shop above first.';
-    note.style.color = '#a11c1c';
-    return;
+  const went = goToCheckout(activeCard);
+  if (went === false) {
+    drawerNote.textContent = 'Checkout link coming soon for this board.';
+    drawerNote.style.color = 'var(--muted)';
   }
-
-  if (!name || !email) {
-    note.textContent = 'Please fill in your name and email.';
-    note.style.color = '#a11c1c';
-    return;
-  }
-
-  const address = form.address.value.trim();
-  const message = form.message.value.trim();
-
-  const body = [
-    `Board: ${board}`,
-    `Name: ${name}`,
-    `Email: ${email}`,
-    address ? `Shipping address: ${address}` : null,
-    message ? `Message: ${message}` : null,
-  ].filter(Boolean).join('\n');
-
-  const mailto = `mailto:hello@hometurfwraps.com?subject=${encodeURIComponent('Board order: ' + board)}&body=${encodeURIComponent(body)}`;
-
-  window.location.href = mailto;
-  note.style.color = 'var(--muted)';
-  note.textContent = 'Opening your email client to send the order...';
 });

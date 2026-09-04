@@ -16,8 +16,7 @@
     <a href="#about">About</a>
     <a href="#how-it-works">How it works</a>
     <a href="#gallery">Gallery</a>
-    <a href="#shop">Shop</a>
-    <a href="#order" class="nav-cta">Order</a>
+    <a href="#shop" class="nav-cta">Shop</a>
   </div>
 </nav>
 
@@ -48,8 +47,8 @@
   <h2 class="reveal">What we do</h2>
   <p class="reveal">
     Every board we sell is built and wrapped in-house using genuine 3M vinyl — decorative
-    pieces built to hang, not ride. Browse the lineup, pick your favorite design, and
-    we'll ship it ready to mount on your wall.
+    pieces built to hang, not ride. Browse the lineup, pick your favorite design, and buy
+    it straight from the site.
   </p>
 </section>
 
@@ -57,7 +56,7 @@
   <h2 class="reveal">How it works</h2>
   <ol class="steps">
     <li class="reveal"><span class="step-num">1</span><div><strong>Browse the lineup</strong><p>Every board is pre-built in its own design.</p></div></li>
-    <li class="reveal"><span class="step-num">2</span><div><strong>Pick your board</strong><p>Choose the design that matches your team.</p></div></li>
+    <li class="reveal"><span class="step-num">2</span><div><strong>Buy it on the spot</strong><p>Checkout is handled securely through Square.</p></div></li>
     <li class="reveal"><span class="step-num">3</span><div><strong>It ships to you</strong><p>Complete and ready to hang — no assembly required.</p></div></li>
   </ol>
 </section>
@@ -88,30 +87,30 @@
 
 <section class="section" id="shop">
   <h2 class="reveal">Shop the lineup</h2>
-  <p class="reveal">Every board below is pre-built and ready to hang. Pick one for a closer look.</p>
+  <p class="reveal">Every board below is pre-built and ready to hang. Pick one for a closer look, then buy on the spot.</p>
   <div class="shop-grid">
-    <button type="button" class="shop-card reveal" data-board="Gridiron Green &amp; Gold" data-price="$XX" data-deck-class="combo-b">
+    <button type="button" class="shop-card reveal" data-board="Gridiron Green &amp; Gold" data-price="$XX" data-deck-class="combo-b" data-checkout-url="">
       <div class="deck-mock combo-b"></div>
       <div class="shop-card-info">
         <p class="shop-card-name">Gridiron Green &amp; Gold</p>
         <p class="shop-card-price">$XX <span>pricing coming soon</span></p>
       </div>
     </button>
-    <button type="button" class="shop-card reveal" data-board="Classic Red &amp; Navy" data-price="$XX" data-deck-class="combo-a">
+    <button type="button" class="shop-card reveal" data-board="Classic Red &amp; Navy" data-price="$XX" data-deck-class="combo-a" data-checkout-url="">
       <div class="deck-mock combo-a"></div>
       <div class="shop-card-info">
         <p class="shop-card-name">Classic Red &amp; Navy</p>
         <p class="shop-card-price">$XX <span>pricing coming soon</span></p>
       </div>
     </button>
-    <button type="button" class="shop-card reveal" data-board="Blackout Silver" data-price="$XX" data-deck-class="combo-c">
+    <button type="button" class="shop-card reveal" data-board="Blackout Silver" data-price="$XX" data-deck-class="combo-c" data-checkout-url="">
       <div class="deck-mock combo-c"></div>
       <div class="shop-card-info">
         <p class="shop-card-name">Blackout Silver</p>
         <p class="shop-card-price">$XX <span>pricing coming soon</span></p>
       </div>
     </button>
-    <button type="button" class="shop-card reveal" data-board="Purple Reign" data-price="$XX" data-deck-class="combo-d">
+    <button type="button" class="shop-card reveal" data-board="Purple Reign" data-price="$XX" data-deck-class="combo-d" data-checkout-url="">
       <div class="deck-mock combo-d"></div>
       <div class="shop-card-info">
         <p class="shop-card-name">Purple Reign</p>
@@ -119,35 +118,6 @@
       </div>
     </button>
   </div>
-</section>
-
-<section class="section alt" id="order">
-  <h2 class="reveal">Order your board</h2>
-  <p class="reveal">Pick a board above, then send us your info and we'll follow up to confirm and ship.</p>
-  <form class="quote-form reveal" id="order-form">
-    <label>
-      Board
-      <input type="text" name="board" id="order-board" placeholder="Select a board above" readonly required>
-    </label>
-    <label>
-      Name
-      <input type="text" name="name" required>
-    </label>
-    <label>
-      Email
-      <input type="email" name="email" required>
-    </label>
-    <label>
-      Shipping address
-      <textarea name="address" rows="3"></textarea>
-    </label>
-    <label>
-      Anything else?
-      <textarea name="message" rows="3"></textarea>
-    </label>
-    <button type="submit" class="cta">Send order</button>
-    <p class="form-note" id="form-note"></p>
-  </form>
 </section>
 
 <footer>
@@ -161,7 +131,8 @@
   <h3 id="drawer-title"></h3>
   <p class="drawer-price" id="drawer-price"></p>
   <p class="drawer-desc">Pre-built, vinyl-wrapped, ready to hang. Genuine 3M vinyl, hand-applied.</p>
-  <button type="button" class="cta" id="drawer-order">Order this board</button>
+  <button type="button" class="cta" id="drawer-buy">Buy now</button>
+  <p class="form-note" id="drawer-note"></p>
 </div>
 
 <script src="script.js"></script>

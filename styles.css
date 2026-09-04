@@ -513,40 +513,6 @@ body {
 .combo-c { background: linear-gradient(135deg, #171717, #9aa0a6); }
 .combo-d { background: linear-gradient(135deg, #5b2a86, #ffffff); }
 
-/* Quote form */
-
-.quote-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.1rem;
-  margin-top: 2rem;
-}
-
-.quote-form label {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  font-size: 0.9rem;
-  color: var(--muted);
-  font-weight: 600;
-}
-
-.quote-form input,
-.quote-form textarea {
-  font: inherit;
-  padding: 0.7rem 0.85rem;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 6px;
-  color: var(--ink);
-  transition: border-color 0.2s ease;
-}
-
-.quote-form input:focus,
-.quote-form textarea:focus {
-  outline: none;
-  border-color: var(--green);
-}
-
 .form-note {
   margin: 0;
   font-size: 0.85rem;
