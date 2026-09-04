@@ -163,10 +163,69 @@ body {
 /* Hero */
 
 .hero {
-  background: var(--green-light);
+  background: linear-gradient(160deg, var(--green-light) 0%, var(--green-light) 45%, #dcecdf 100%);
   text-align: center;
   padding: 4rem 1.5rem 2rem;
   position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: -20% -10%;
+  background: repeating-linear-gradient(
+    135deg,
+    transparent 0 26px,
+    rgba(31, 77, 46, 0.07) 26px 52px
+  );
+  animation: shimmerMove 22s linear infinite;
+  z-index: -1;
+}
+
+@keyframes shimmerMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(52px, 52px); }
+}
+
+.hero-float {
+  display: none;
+  position: absolute;
+  top: 50%;
+  opacity: 0.5;
+  animation: floatDrift 6s ease-in-out infinite;
+}
+
+.hero-float-a {
+  left: 16%;
+  width: 56px;
+  height: 56px;
+  transform: translateY(-140%) rotate(-8deg);
+  animation-delay: 0s;
+}
+
+.hero-float-b {
+  right: 17%;
+  width: 34px;
+  height: 110px;
+  transform: translateY(-40%) rotate(10deg);
+  animation-delay: 1.4s;
+}
+
+@media (min-width: 1300px) {
+  .hero-float-a { left: 20%; }
+  .hero-float-b { right: 21%; }
+}
+
+@keyframes floatDrift {
+  0%, 100% { margin-top: 0; }
+  50% { margin-top: -14px; }
+}
+
+@media (min-width: 900px) {
+  .hero-float {
+    display: block;
+  }
 }
 
 .hero-logo {
@@ -174,11 +233,13 @@ body {
   width: 100%;
   height: auto;
   margin-bottom: 1.5rem;
+  position: relative;
 }
 
 .hero h1 {
   margin: 0 0 0.5rem;
   font-size: 2.4rem;
+  position: relative;
 }
 
 .tagline {
@@ -186,10 +247,18 @@ body {
   margin: 0 auto 1.75rem;
   color: var(--muted);
   font-size: 1.1rem;
+  position: relative;
 }
+
+.hero-logo.reveal { transition-delay: 0s; }
+.hero h1.reveal { transition-delay: 0.1s; }
+.hero .tagline.reveal { transition-delay: 0.2s; }
+.hero .cta.reveal { transition-delay: 0.3s; }
 
 .cta {
   display: inline-block;
+  position: relative;
+  overflow: hidden;
   background: var(--green);
   color: #fff;
   text-decoration: none;
@@ -200,6 +269,22 @@ body {
   cursor: pointer;
   font-size: 1rem;
   transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.cta::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+}
+
+.cta:hover::after {
+  left: 120%;
 }
 
 .cta:hover {
@@ -854,6 +939,9 @@ footer a {
   .heart-btn,
   .recent-tray-item,
   .hero-logo { transition: none; }
+  .hero::before,
+  .hero-float { animation: none; }
+  .cta::after { transition: none; }
 }
 
 @media (max-width: 640px) {
