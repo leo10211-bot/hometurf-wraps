@@ -89,6 +89,8 @@ function openDrawer(card) {
   drawerTitle.textContent = card.dataset.board;
   drawerPrice.textContent = card.dataset.price + ' — pricing coming soon';
   drawerNote.textContent = '';
+  checkoutPending = false;
+  drawerBuyBtn.disabled = false;
 
   drawer.classList.add('open');
   drawerOverlay.classList.add('open');
@@ -109,13 +111,28 @@ function onDrawerKeydown(e) {
   if (e.key === 'Escape') closeDrawer();
 }
 
-function goToCheckout(card) {
-  const url = card.dataset.checkoutUrl;
-  if (url) {
-    window.location.href = url;
-    return;
+function burstConfetti(originEl) {
+  if (prefersReducedMotion) return;
+  const rect = originEl.getBoundingClientRect();
+  const originX = rect.left + rect.width / 2;
+  const originY = rect.top + rect.height / 2;
+  const colors = ['#2f8a4e', '#c9a227', '#1f4d2e', '#a11c1c'];
+
+  for (let i = 0; i < 16; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 60 + Math.random() * 80;
+    piece.style.setProperty('--start-x', `${originX}px`);
+    piece.style.setProperty('--start-y', `${originY}px`);
+    piece.style.setProperty('--end-x', `${originX + Math.cos(angle) * distance}px`);
+    piece.style.setProperty('--end-y', `${originY + Math.sin(angle) * distance - 30}px`);
+    piece.style.setProperty('--spin', `${Math.random() * 360}deg`);
+    piece.style.background = colors[i % colors.length];
+    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    document.body.appendChild(piece);
+    setTimeout(() => piece.remove(), 750);
   }
-  return false;
 }
 
 shopCards.forEach((card) => {
@@ -134,10 +151,30 @@ shopCards.forEach((card) => {
 drawerClose.addEventListener('click', closeDrawer);
 drawerOverlay.addEventListener('click', closeDrawer);
 
+function isSafeCheckoutUrl(url) {
+  try {
+    const parsed = new URL(url, window.location.href);
+    return parsed.protocol === 'https:' || parsed.protocol === 'http:';
+  } catch {
+    return false;
+  }
+}
+
+let checkoutPending = false;
+
 drawerBuyBtn.addEventListener('click', () => {
-  if (!activeCard) return;
-  const went = goToCheckout(activeCard);
-  if (went === false) {
+  if (!activeCard || checkoutPending) return;
+  const url = activeCard.dataset.checkoutUrl;
+
+  if (url && isSafeCheckoutUrl(url)) {
+    checkoutPending = true;
+    drawerBuyBtn.disabled = true;
+    burstConfetti(drawerBuyBtn);
+    setTimeout(() => { window.location.href = url; }, prefersReducedMotion ? 0 : 450);
+  } else if (url) {
+    drawerNote.textContent = 'This board’s checkout link looks invalid — check the URL.';
+    drawerNote.style.color = '#a11c1c';
+  } else {
     drawerNote.textContent = 'Checkout link coming soon for this board.';
     drawerNote.style.color = 'var(--muted)';
   }
@@ -209,17 +246,36 @@ function updateFavoritesUI() {
   favoritesCountEl.hidden = favorites.length === 0;
 }
 
-function toggleFavorite(board) {
-  favorites = isFavorite(board) ? favorites.filter((b) => b !== board) : [...favorites, board];
+const toastEl = document.getElementById('toast');
+let toastTimer = null;
+
+function showToast(message) {
+  toastEl.textContent = message;
+  toastEl.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2500);
+}
+
+function toggleFavorite(board, heartEl) {
+  const nowFavorite = !isFavorite(board);
+  favorites = nowFavorite ? [...favorites, board] : favorites.filter((b) => b !== board);
   saveFavorites(favorites);
   updateFavoritesUI();
   applyFilters();
+
+  if (nowFavorite) {
+    heartEl.classList.remove('pop');
+    void heartEl.offsetWidth;
+    heartEl.classList.add('pop');
+    showToast(`Added "${board}" to favorites`);
+  }
 }
 
 shopCards.forEach((card) => {
-  card.querySelector('.heart-btn').addEventListener('click', (e) => {
+  const heart = card.querySelector('.heart-btn');
+  heart.addEventListener('click', (e) => {
     e.stopPropagation();
-    toggleFavorite(card.dataset.board);
+    toggleFavorite(card.dataset.board, heart);
   });
 });
 
@@ -370,6 +426,56 @@ if (supportsHoverTilt) {
     });
   });
 }
+
+/* Scroll progress bar */
+
+const scrollProgressEl = document.getElementById('scroll-progress');
+
+function updateScrollProgress() {
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+  scrollProgressEl.style.width = pct + '%';
+}
+
+let progressTicking = false;
+window.addEventListener('scroll', () => {
+  if (progressTicking) return;
+  progressTicking = true;
+  requestAnimationFrame(() => {
+    updateScrollProgress();
+    progressTicking = false;
+  });
+}, { passive: true });
+
+updateScrollProgress();
+
+/* Active nav section highlight */
+
+const navSectionLinks = [...document.querySelectorAll('#nav-links a[data-nav-section], .nav-cta[data-nav-section]')];
+const navSectionEls = navSectionLinks
+  .map((a) => document.getElementById(a.dataset.navSection))
+  .filter(Boolean);
+
+const activeSectionRatios = new Map();
+
+const navSectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      activeSectionRatios.set(entry.target.id, entry.intersectionRatio);
+    } else {
+      activeSectionRatios.delete(entry.target.id);
+    }
+  });
+
+  if (activeSectionRatios.size === 0) return;
+  const [bestId] = [...activeSectionRatios.entries()].sort((a, b) => b[1] - a[1])[0];
+  const link = navSectionLinks.find((a) => a.dataset.navSection === bestId);
+  if (!link) return;
+  navSectionLinks.forEach((a) => a.classList.remove('active'));
+  link.classList.add('active');
+}, { rootMargin: '-45% 0px -45% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] });
+
+navSectionEls.forEach((el) => navSectionObserver.observe(el));
 
 /* Scroll parallax in hero */
 
