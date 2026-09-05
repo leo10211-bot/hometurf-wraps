@@ -712,14 +712,27 @@ body {
 
 .drawer-close {
   position: absolute;
-  top: 0.75rem;
-  right: 0.9rem;
-  background: none;
+  top: 1rem;
+  right: 1rem;
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
   border: none;
-  font-size: 1.5rem;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  font-size: 1.75rem;
   line-height: 1;
-  color: var(--muted);
+  color: var(--ink);
   cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.drawer-close:hover {
+  transform: scale(1.08);
 }
 
 .deck-mock.drawer-mock {
@@ -773,7 +786,9 @@ body {
     top: 0;
     bottom: 0;
     height: 100%;
-    max-width: 380px;
+    max-width: 520px;
+    width: 40vw;
+    padding: 2rem;
     border-radius: 0;
     transform: translateX(100%);
     overflow-y: auto;
@@ -823,6 +838,8 @@ body {
   position: fixed;
   top: 1.5rem;
   right: 1.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: none;
   color: #fff;
   font-size: 2rem;
 }
